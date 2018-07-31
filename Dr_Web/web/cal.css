@@ -1,0 +1,29 @@
+body{background-image:url("pozadina.jpg");
+background-size:cover;
+}
+td{vertical-align:top;
+	width:100px;
+height:100px;}
+table { margin:5px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+.event{
+	width:100px;
+	height:18px;
+	background-color:red;
+	
+}
+.wraper{margin-top:100px;
+margin-left:30%;
+
+}
+#drapmk{
+    position: absolute;
+    left: 100px;
+    top: 250px;
+    
+}

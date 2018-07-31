@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Panels.LoginController">
+   <children>
+      <Button fx:id="login" layoutX="247.0" layoutY="334.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="89.0" text="Log In" />
+      <ImageView id="logo" fx:id="picture" fitHeight="169.0" fitWidth="229.0" layoutX="178.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="usertx" layoutX="218.0" layoutY="236.0" />
+      <PasswordField fx:id="passtx" layoutX="218.0" layoutY="277.0" />
+      <Label id="user" layoutX="147.0" layoutY="236.0" prefHeight="25.0" prefWidth="57.0" text="Username" />
+      <Label id="pass" layoutX="147.0" layoutY="281.0" prefHeight="17.0" prefWidth="57.0" text="Password" />
+      <Label fx:id="wrong" layoutX="395.0" layoutY="336.0" prefHeight="25.0" prefWidth="183.0" />
+      <Hyperlink fx:id="create" layoutX="103.0" layoutY="341.0" text="create user" />
+   </children>
+</AnchorPane>

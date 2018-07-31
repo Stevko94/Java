@@ -1,0 +1,29 @@
+body{background-image:url("pozadina.jpg");
+background-size:cover;
+}
+#auser{
+    text-align: center;
+    width: 200px;
+    height: 20px;
+    margin-bottom: 10px;
+}
+#apass{
+    text-align: center;
+    width: 200px;
+    height: 20px;
+    margin-bottom: 10px;
+}
+#sub{
+    width: 200px;
+    height: 40px;
+    background: #66FFFF;
+}
+div{
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 200px;
+    height: 200px;
+}
