@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class FController {
@@ -42,9 +43,9 @@ public class FController {
     return "index";
     } 
     @RequestMapping("/{id}")
-    public String topic(@PathVariable(value="id") Integer id, ModelMap mm,HttpServletRequest req){
+    public String topic(@PathVariable(value="id") Integer id, ModelMap mm, @RequestParam(required = false) String com){
       Connection conn;
-      String comment= req.getParameter("comment");
+      String comment= com;
         try {
             conn = dataSource.getConnection();
              ResultSet rs = conn.createStatement().executeQuery("select * from topic where id ="+id);
