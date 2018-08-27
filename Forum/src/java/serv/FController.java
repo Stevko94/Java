@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class FController {
     @Autowired
+    Topic t;
+    @Autowired
     DataSource dataSource;
     @RequestMapping("/")
     public String home(ModelMap mm){

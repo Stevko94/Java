@@ -1,5 +1,9 @@
 
 package Ent;
+
+import org.springframework.stereotype.Component;
+
+@Component
 public class Topic {
     private int id;
     private String title;
