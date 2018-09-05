@@ -11,7 +11,9 @@
         <h1>${topic.title}</h1>
         <p>${topic.description}</p>
         <h3>Comment</h3>
-        <form action="./${topic.id}" method="post"><input  type="text" name="Comment" </form>
-        <input id="sub" type="submit" value="Post">
+        <form action="./comm" method="get">
+            <input  type="text" name="Comment" </form>
+            <input type="hidden" name="topic_id" value="${topic.id}">
+            <input id="sub" type="submit" value="Post">
     </body>
 </html>
