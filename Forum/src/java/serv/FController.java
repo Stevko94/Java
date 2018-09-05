@@ -47,19 +47,16 @@ public class FController {
     @RequestMapping(value = "/comm", method = RequestMethod.POST)
     public String coment(@RequestParam(value = "Comment") String com,@RequestParam(value = "topic_id") String topic_id){
         Connection conn;
-        String topicId=topic_id;
-        String comment = com;
         try {
             conn = dataSource.getConnection();
                  Statement ps = conn.createStatement();
-                 ps.execute("insert into comments(com,topic_id) values("+comment+","+topicId+")");
+                 ps.executeQuery("insert into comments(comm,topic_id) values('"+com+"','"+topic_id+"')");
         } catch (SQLException ex) {
             Logger.getLogger(FController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
-    
-    
-    return "Topic";}
+         
+    return "Topic";
+    }
     @RequestMapping(value = "/{id}")
     public String topic(@PathVariable(value="id") Integer id, ModelMap mm){
       Connection conn;
