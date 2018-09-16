@@ -44,19 +44,7 @@ public class FController {
         mm.put("topics", topic);
     return "index";
     } 
-    @RequestMapping(value = "/comm", method = RequestMethod.POST)
-    public String coment(@RequestParam(value = "Comment") String com,@RequestParam(value = "topic_id") String topic_id){
-        Connection conn;
-        try {
-            conn = dataSource.getConnection();
-                 Statement ps = conn.createStatement();
-                 ps.executeQuery("insert into comments(comm,topic_id) values('"+com+"','"+topic_id+"')");
-        } catch (SQLException ex) {
-            Logger.getLogger(FController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
-    return "Topic";
-    }
+   
     @RequestMapping(value = "/{id}")
     public String topic(@PathVariable(value="id") Integer id, ModelMap mm){
       Connection conn;
@@ -76,5 +64,20 @@ public class FController {
         }
      
     return "Topic";}
-    
+     
+    @RequestMapping(value = "/com", method = RequestMethod.POST)
+    public String coment(@RequestParam(value = "Comment") String com,@RequestParam(value = "topic_id") String topic_id){
+        Connection conn;
+        try {
+            conn = dataSource.getConnection();
+                 PreparedStatement ps = conn.prepareStatement("insert into comments(com,topic_id) values(?,?)");
+                 ps.setString(1, com);
+                 ps.setInt(2, Integer.parseInt(topic_id));
+                 ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(FController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+    return "Topic";
+    }
 }
