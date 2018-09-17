@@ -1,6 +1,7 @@
 
 package serv;
 
+import Ent.Comments;
 import Ent.Topic;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,6 +46,7 @@ public class FController {
     @RequestMapping(value = "/{id}")
     public String topic(@PathVariable(value="id") Integer id, ModelMap mm,@RequestParam(required = false,value = "Comment") String com,@RequestParam(required = false,value = "topic_id") String topic_id){
       Connection conn;
+      List<Comments> coms= new ArrayList<>();
         try {
             conn = dataSource.getConnection();
              ResultSet rs = conn.createStatement().executeQuery("select * from topic where id ="+id);
@@ -54,6 +56,15 @@ public class FController {
              t.setTitle(rs.getString("title"));
              t.setDescription(rs.getString("description"));
              mm.put("topic", t);
+             rs = conn.createStatement().executeQuery("select * from comments where topic_id ="+id);
+             while(rs.next()){
+               Comments c = new Comments();
+               c.setId(rs.getInt("id"));
+               c.setCom(rs.getString("com"));
+               c.setTopicId(rs.getInt("topic_id"));
+               coms.add(c);
+             }
+             mm.put("coments", coms);
              }
              
         } catch (SQLException ex) {
