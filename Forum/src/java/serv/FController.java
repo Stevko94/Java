@@ -6,19 +6,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -46,7 +43,7 @@ public class FController {
     } 
    
     @RequestMapping(value = "/{id}")
-    public String topic(@PathVariable(value="id") Integer id, ModelMap mm){
+    public String topic(@PathVariable(value="id") Integer id, ModelMap mm,@RequestParam(required = false,value = "Comment") String com,@RequestParam(required = false,value = "topic_id") String topic_id){
       Connection conn;
         try {
             conn = dataSource.getConnection();
@@ -62,22 +59,18 @@ public class FController {
         } catch (SQLException ex) {
             Logger.getLogger(FController.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
-    return "Topic";}
-     
-    @RequestMapping(value = "/com", method = RequestMethod.POST)
-    public String coment(@RequestParam(value = "Comment") String com,@RequestParam(value = "topic_id") String topic_id){
-        Connection conn;
-        try {
-            conn = dataSource.getConnection();
-                 PreparedStatement ps = conn.prepareStatement("insert into comments(com,topic_id) values(?,?)");
-                 ps.setString(1, com);
+        if(com!=null){  PreparedStatement ps;
+          try {
+              conn = dataSource.getConnection();
+              ps = conn.prepareStatement("insert into comments(com,topic_id) values(?,?)");
+              ps.setString(1, com);
                  ps.setInt(2, Integer.parseInt(topic_id));
                  ps.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(FController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
-    return "Topic";
-    }
+          } catch (SQLException ex) {
+              Logger.getLogger(FController.class.getName()).log(Level.SEVERE, null, ex);
+          }
+                 }
+     
+    return "Topic";}
+    
 }
