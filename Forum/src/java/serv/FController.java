@@ -3,17 +3,11 @@ package serv;
 
 import Ent.Comments;
 import Ent.CommentsDao;
+import Ent.Genre;
+import Ent.GenreDao;
 import Ent.Topic;
 import Ent.TopicDao;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,12 +22,18 @@ public class FController {
     @Autowired
     CommentsDao Comments;
     @Autowired
-    DataSource dataSource;
+    GenreDao Genre;
     @RequestMapping("/")
-    public String home(ModelMap mm){
-        List<Topic> topic = Top.findAll();
+    public String bas(ModelMap mm){
+    List<Genre> genres= Genre.findAll();
+    mm.put("Genres",genres);
+    return"Home";
+    }
+    @RequestMapping("/Topics/{id}")
+    public String home(@PathVariable(value="id")Integer id,ModelMap mm){
+        List<Topic> topic = Top.findAll(id);
         mm.put("topics", topic);
-    return "index";
+    return "Topics";
     } 
    
     @RequestMapping(value = "/{id}")

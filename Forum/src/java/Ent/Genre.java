@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,15 +23,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Datamaskinen
  */
 @Entity
-@Table(name = "topic")
+@Table(name = "genre")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Topic.findAll", query = "SELECT t FROM Topic t")
-    , @NamedQuery(name = "Topic.findById", query = "SELECT t FROM Topic t WHERE t.id = :id")
-    , @NamedQuery(name = "Topic.findByTitle", query = "SELECT t FROM Topic t WHERE t.title = :title")
-    , @NamedQuery(name = "Topic.findByDescription", query = "SELECT t FROM Topic t WHERE t.description = :description")
-    , @NamedQuery(name = "Topic.findByGenreId", query = "SELECT t FROM Topic t WHERE t.genreId = :genreId")})
-public class Topic implements Serializable {
+    @NamedQuery(name = "Genre.findAll", query = "SELECT g FROM Genre g")
+    , @NamedQuery(name = "Genre.findById", query = "SELECT g FROM Genre g WHERE g.id = :id")
+    , @NamedQuery(name = "Genre.findByTitle", query = "SELECT g FROM Genre g WHERE g.title = :title")})
+public class Genre implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -43,24 +40,12 @@ public class Topic implements Serializable {
     @Size(max = 25)
     @Column(name = "title")
     private String title;
-    @Size(max = 250)
-    @Column(name = "description")
-    private String description;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "genre_id")
-    private int genreId;
 
-    public Topic() {
+    public Genre() {
     }
 
-    public Topic(Integer id) {
+    public Genre(Integer id) {
         this.id = id;
-    }
-
-    public Topic(Integer id, int genreId) {
-        this.id = id;
-        this.genreId = genreId;
     }
 
     public Integer getId() {
@@ -79,22 +64,6 @@ public class Topic implements Serializable {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getGenreId() {
-        return genreId;
-    }
-
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -105,10 +74,10 @@ public class Topic implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Topic)) {
+        if (!(object instanceof Genre)) {
             return false;
         }
-        Topic other = (Topic) object;
+        Genre other = (Genre) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -117,7 +86,7 @@ public class Topic implements Serializable {
 
     @Override
     public String toString() {
-        return "Ent.Topic[ id=" + id + " ]";
+        return "Ent.Genre[ id=" + id + " ]";
     }
     
 }

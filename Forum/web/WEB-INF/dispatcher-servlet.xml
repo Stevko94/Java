@@ -23,4 +23,6 @@
 
 <bean id="Top" class="Ent.TopicDao"/>
 <bean id="Coments" class="Ent.CommentsDao" />
+<bean id="Genre" class="Ent.GenreDao" />
+
 </beans>

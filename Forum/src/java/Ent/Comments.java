@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Ent;
 
 import java.io.Serializable;
@@ -14,6 +18,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ *
+ * @author Datamaskinen
+ */
 @Entity
 @Table(name = "comments")
 @XmlRootElement
@@ -30,7 +38,7 @@ public class Comments implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Size(max = 150)
+    @Size(max = 250)
     @Column(name = "com")
     private String com;
     @Column(name = "topic_id")

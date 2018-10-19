@@ -10,9 +10,9 @@
     </head>
 
     <body>
-        <h1>Welcome to Forum</h1>
+        <h1>Topics</h1>
         <c:forEach items="${topics}" var="topic">
-            <a href="Forum/${topic.id}"><div style="border:1px solid red; margin: 5px; padding: 5px;"> ${topic.title}</div></a>
+            <a href="/Forum/${topic.id}"><div style="border:1px solid red; margin: 5px; padding: 5px;"> ${topic.title}</div></a>
         </c:forEach>
     </body>
 </html>
