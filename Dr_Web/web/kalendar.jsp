@@ -46,7 +46,7 @@ app = drm.getAppointmentsList();
             var mesec = date.getMonth();
 			var mounts =["Jan","Feb","Mar","Apr","May","Jun","Jul","Avg","Sep","Oct","Nov","Dec"];
 			var setmounth= document.getElementById("mounth").innerHTML=mounts[mesec];
-			var zadnji =lastDay.getDay()+29;
+			var zadnji =lastDay.getDay()+28;
             var prvi=firstDay.getDay();
           var c=document.body.getElementsByTagName("td");
        for( i=prvi;i<c.length;i++){c[i].innerHTML=i-prvi+1;}
